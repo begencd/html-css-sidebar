@@ -1,0 +1,211 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url("/font/montserrat.regular.ttf") format("truetype");
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Montserrat";
+  border: 0;
+}
+
+html,
+body,
+.wrapper {
+  height: 100%;
+}
+
+.wrapper {
+  padding: 10px;
+}
+
+.sidebar {
+  width: 280px;
+  height: 100%;
+  background-color: #282829;
+  border-radius: 14px;
+  padding: 0 14px;
+  position: relative;
+  transition: 230ms width;
+
+  .sidebar--toggle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(60, 160, 237);
+    color: #fff;
+    position: absolute;
+    top: 16px;
+    left: 100%;
+    transform: translateX(-50%);
+
+    svg {
+      transition: 300ms all;
+      rotate: 180deg;
+    }
+  }
+
+  .sidebar--header {
+    display: flex;
+    align-items: center;
+    padding: 14px 0;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    gap: 10px;
+
+    img {
+      min-width: 40px;
+      height: 40px;
+    }
+  }
+
+  input[name="toggle"] {
+    display: none;
+  }
+
+  .hidden {
+    opacity: 1;
+    white-space: nowrap;
+    visibility: visible;
+    transition: 250ms opacity, 250ms visibility;
+  }
+
+  &:has(input[name="toggle"]:checked) {
+    width: 68px;
+
+    .hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .menu .icon {
+      &:hover::before,
+      &:hover::after {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    .sidebar--toggle {
+      width: 24px;
+      height: 24px;
+      svg {
+        rotate: 0deg;
+      }
+    }
+    .search--area input {
+      padding-right: 0;
+    }
+    .search--area label {
+      display: block;
+    }
+  }
+  .search--area {
+    position: relative;
+
+    label {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 40px;
+      height: 40px;
+      z-index: 10;
+      display: none;
+    }
+
+    .icon {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+
+      svg {
+        width: 22px;
+        height: 22px;
+      }
+    }
+    input {
+      width: 100%;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      outline: none;
+      padding: 0 12px 0 40px;
+      font-size: 14px;
+      color: #fff;
+    }
+  }
+
+  .menu {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    a {
+      display: flex;
+      height: 40px;
+      border-radius: 4px;
+      color: #fff;
+      align-items: center;
+
+      &:where(:hover, .active) {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+      .icon {
+        flex-shrink: 0;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+
+        &::before {
+          content: attr(title);
+          position: absolute;
+          left: 100%;
+          top: 50%;
+          translate: 20px -50%;
+          background-color: #282829;
+          padding: 3px 5px;
+          font-size: 12px;
+          border-radius: 4px;
+          white-space: nowrap;
+          opacity: 0;
+          visibility: hidden;
+          transition: 230ms all;
+        }
+
+        &::after {
+          content: "";
+          border: 4px solid transparent;
+          border-right-color: #282829;
+          position: absolute;
+          left: 100%;
+          top: 50%;
+          translate: 12px -50%;
+          opacity: 0;
+          visibility: hidden;
+          transition: 230ms all;
+        }
+
+        svg {
+          color: #fff;
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  }
+}
